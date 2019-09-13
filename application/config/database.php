@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'bengkel',
+	'hostname' => 'den1.mysql3.gear.host',
+	'username' => 'dtbase',
+	'password' => '@12345678aj',
+	'database' => 'dtbase',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
