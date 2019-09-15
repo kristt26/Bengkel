@@ -64,7 +64,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
             if ($is_valid_token['data']->Role === "Admin") {
                 $idKriteria = $this->uri->segment(4);
                 $_PUT = json_decode($this->security->xss_clean($this->input->raw_input_stream));
-                $Output = $this->KriteriaModel->UpdateKriteria($idKriteria, $_PUT);
+                $Output = $this->KriteriaModel->Update($idKriteria, $_PUT);
                 if ($Output == true) {
                     $message = [
                         'status' => true,
@@ -87,7 +87,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
             $idKriteria = $this->get('iddebitur');
-            $Output = $this->KriteriaModel->SelectKriteria($idKriteria);
+            $Output = $this->KriteriaModel->Select($idKriteria);
             if (!empty($Output)) {
                 $message = [
                     'status' => true,
@@ -114,7 +114,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
             if ($is_valid_token['data']->Role === "Admin") {
                 $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $idKriteria = $_POST->idKriteria;
-                $Output = $this->KriteriaModel->DeleteKriteria($idKriteria);
+                $Output = $this->KriteriaModel->Delete($idKriteria);
                 if ($Output === true) {
                     $message = [
                         'status' => true,
