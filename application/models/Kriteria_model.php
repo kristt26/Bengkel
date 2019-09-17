@@ -7,9 +7,9 @@ class Kriteria_Model extends CI_Model
         $this->db->insert($this->KriteriaTable, $Data);
         return $this->db->insert_id();
     }
-    public function Update($iddebitur, $data)
+    public function Update($idkriteria, $data)
     {
-        $this->db->where("iddebitur", $iddebitur);
+        $this->db->where("idkriteria", $idkriteria);
         $result = $this->db->update($this->KriteriaTable, $data);
         return $result;
     }
