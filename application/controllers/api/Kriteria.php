@@ -7,12 +7,11 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class Kriteria extends \Restserver\Libraries\REST_Controller
 {
-    public function __construct($config = 'rest')
+    public function __construct()
     {
-        parent::__construct($config);
+        parent::__construct();
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
-        
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         $this->load->model('Kriteria_model', 'KriteriaModel');
     }
