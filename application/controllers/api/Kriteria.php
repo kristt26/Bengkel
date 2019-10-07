@@ -12,12 +12,13 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
         parent::__construct($config);
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
-        header("Access-Control-Allow-Methods: POST, GET, DELETE, PUT, OPTIONS");
+        
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         $this->load->model('Kriteria_model', 'KriteriaModel');
     }
     public function insert_post()
     {
+        header("Access-Control-Allow-Methods: POST");
         $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
@@ -58,6 +59,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
     }
     public function update_put()
     {
+        header("Access-Control-Allow-Methods: PUT");
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
@@ -83,6 +85,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
     }
     public function select_get()
     {
+        header("Access-Control-Allow-Methods: GET");
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
@@ -108,6 +111,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
     }
     public function hapus_delete()
     {
+        header("Access-Control-Allow-Methods: DELETE");
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
