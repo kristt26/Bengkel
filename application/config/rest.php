@@ -573,10 +573,7 @@ $config['allowed_cors_headers'] = [
 |
 */
 $config['allowed_cors_methods'] = [
-  'GET',
-  'POST',
-  'PUT',
-  'DELETE'
+  
 ];
 
 /*
