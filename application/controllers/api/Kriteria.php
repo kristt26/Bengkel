@@ -22,25 +22,33 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
         $method = $_SERVER['REQUEST_METHOD'];
         if ($method == "OPTIONS") {
             die();
-        }
-        $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
-        $this->load->library('Authorization_Token');
-        $is_valid_token = $this->authorization_token->validateToken();
-        if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Admin") {
-                $Output = $this->KriteriaModel->Insert($_POST);
-                if ($Output > 0 && !empty($Output)) {
-                    $message = [
-                        'status' => true,
-                        'data' => $Output,
-                        'message' => "Success!",
-                    ];
-                    $this->response($message, REST_Controller::HTTP_OK);
+        }else{
+            $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+            $this->load->library('Authorization_Token');
+            $is_valid_token = $this->authorization_token->validateToken();
+            if ($is_valid_token['status'] === true) {
+                if ($is_valid_token['data']->Role === "Admin") {
+                    $Output = $this->KriteriaModel->Insert($_POST);
+                    if ($Output > 0 && !empty($Output)) {
+                        $message = [
+                            'status' => true,
+                            'data' => $Output,
+                            'message' => "Success!",
+                        ];
+                        $this->response($message, REST_Controller::HTTP_OK);
+                    } else {
+                        $message = [
+                            'status' => false,
+                            'Data' => null,
+                            'message' => "Gagal Menyimpan",
+                        ];
+                        $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    }
                 } else {
                     $message = [
                         'status' => false,
                         'Data' => null,
-                        'message' => "Gagal Menyimpan",
+                        'message' => "Anda tidak memiliki akses",
                     ];
                     $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                 }
@@ -48,18 +56,12 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
                 $message = [
                     'status' => false,
                     'Data' => null,
-                    'message' => "Anda tidak memiliki akses",
+                    'message' => "Session Habis",
                 ];
                 $this->response($message, REST_Controller::HTTP_NOT_FOUND);
             }
-        } else {
-            $message = [
-                'status' => false,
-                'Data' => null,
-                'message' => "Session Habis",
-            ];
-            $this->response($message, REST_Controller::HTTP_NOT_FOUND);
         }
+        
     }
     public function update_put()
     {
