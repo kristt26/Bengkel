@@ -7,16 +7,17 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class Kriteria extends \Restserver\Libraries\REST_Controller
 {
-    public function __construct($config = 'rest')
+    public function __construct()
     {
-        parent::__construct($config);
-        header("Access-Control-Allow-Origin: *");
-        header("Content-Type: application/json; charset=UTF-8");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        parent::__construct();
+        
         $this->load->model('Kriteria_model', 'KriteriaModel');
     }
     public function insert_post()
     {
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         header("Access-Control-Allow-Methods: POST");
         $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
         $this->load->library('Authorization_Token');
