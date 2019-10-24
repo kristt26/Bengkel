@@ -10,7 +10,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->load->model('Kriteria_model', 'KriteriaModel');
     }
     public function insert_post()
@@ -19,6 +19,10 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         header("Access-Control-Allow-Methods: POST");
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method == "OPTIONS") {
+            die();
+        }
         $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
@@ -40,7 +44,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
                     ];
                     $this->response($message, REST_Controller::HTTP_NOT_FOUND);
                 }
-            }else{
+            } else {
                 $message = [
                     'status' => false,
                     'Data' => null,
@@ -48,7 +52,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
                 ];
                 $this->response($message, REST_Controller::HTTP_NOT_FOUND);
             }
-        }else{
+        } else {
             $message = [
                 'status' => false,
                 'Data' => null,

@@ -17,7 +17,7 @@ class API_Controller extends CI_Controller
      *
      * @var array
      */
-    protected $allowed_http_methods = ['get', 'delete', 'post', 'put', 'patch', 'head'];
+    protected $allowed_http_methods = ['get', 'delete', 'post', 'put', 'options', 'patch', 'head'];
 
     /**
      * The request method is not supported by the following resource
