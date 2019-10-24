@@ -146,7 +146,7 @@ abstract class REST_Controller extends \CI_Controller {
      *
      * @var array
      */
-    protected $allowed_http_methods = ['get', 'delete', 'post', 'put', 'options', 'patch', 'head'];
+    protected $allowed_http_methods = ['get', 'delete', 'post', 'put', 'patch', 'head'];
     /**
      * Contains details about the request
      * Fields: body, format, method, ssl
