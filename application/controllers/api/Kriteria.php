@@ -22,6 +22,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
         $method = $_SERVER['REQUEST_METHOD'];
         if ($method == "OPTIONS") {
             die();
+            exit();
         }else{
             $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
             $this->load->library('Authorization_Token');
