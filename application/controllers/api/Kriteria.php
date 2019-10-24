@@ -7,9 +7,9 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 class Kriteria extends \Restserver\Libraries\REST_Controller
 {
-    public function __construct()
+    public function __construct($config='rest')
     {
-        parent::__construct();
+        parent::__construct($config);
 
         $this->load->model('Kriteria_model', 'KriteriaModel');
     }
