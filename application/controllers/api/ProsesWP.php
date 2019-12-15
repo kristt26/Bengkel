@@ -14,7 +14,7 @@ class ProsesWP extends \Restserver\Libraries\REST_Controller
         $this->load->model('ProsesWP_model', 'ProsesWPModel');
     }
     
-    public function proses_delete()
+    public function proses_get()
     {
         header("Access-Control-Allow-Methods: DELETE");
         $this->load->library('Authorization_Token');
@@ -23,7 +23,7 @@ class ProsesWP extends \Restserver\Libraries\REST_Controller
             if ($is_valid_token['data']->Role === "AnalystOfficer") {
                 $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $idKriteria = $this->uri->segment(3);
-                $Output = $this->KriteriaModel->ProsesWPModel($idKriteria);
+                $Output = $this->ProsesWPModel->HitungWP($idKriteria);
                 if ($Output === true) {
                     $message = [
                         'status' => true,

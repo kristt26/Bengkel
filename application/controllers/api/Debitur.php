@@ -119,7 +119,7 @@ class Debitur extends \Restserver\Libraries\REST_Controller
         if ($is_valid_token['status'] === true) {
             if ($is_valid_token['data']->Role === "CustomerService") {
                 $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
-                $IdDebitur = $_POST->iddebitur;
+                $IdDebitur = $this->uri->segment(3);
                 $Output = $this->DebiturModel->DeleteDebitur($IdDebitur);
                 if ($Output === true) {
                     $message = [
