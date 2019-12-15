@@ -22,7 +22,7 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Admin") {
+            if ($is_valid_token['data']->Role === "KomiteKredit") {
                 $Output = $this->DataKriteriaModel->Insert($_POST);
                 if ($Output > 0 && !empty($Output)) {
                     $message = [
@@ -90,7 +90,7 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Admin") {
+            if ($is_valid_token['data']->Role === "KomiteKredit") {
                 $IdDataKriteria = $this->uri->segment(4);
                 $_PUT = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $Output = $this->DataKriteriaModel->Update($IdDataKriteria, $_PUT);
@@ -116,7 +116,7 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Admin") {
+            if ($is_valid_token['data']->Role === "KomiteKredit") {
                 $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $IdDataKriteria = $_POST->iddebitur;
                 $Output = $this->DataKriteriaModel->Delete($IdDataKriteria);

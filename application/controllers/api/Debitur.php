@@ -23,7 +23,7 @@ class Debitur extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Customer Service" || $is_valid_token['data']->Role === "Admin") {
+            if ($is_valid_token['data']->Role === "CustomerService") {
                 $Output = $this->DebiturModel->InsertDebitur($_POST);
                 if ($Output > 0 && !empty($Output)) {
                     $message = [
@@ -91,7 +91,7 @@ class Debitur extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Customer Service") {
+            if ($is_valid_token['data']->Role === "CustomerService") {
                 $IdDebitur = $this->uri->segment(4);
                 $_PUT = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $Output = $this->DebiturModel->UpdateDebitur($IdDebitur, $_PUT);
@@ -117,7 +117,7 @@ class Debitur extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Customer Service") {
+            if ($is_valid_token['data']->Role === "CustomerService") {
                 $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $IdDebitur = $_POST->iddebitur;
                 $Output = $this->DebiturModel->DeleteDebitur($IdDebitur);

@@ -22,7 +22,7 @@ class Persyaratan extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Admin") {
+            if ($is_valid_token['data']->Role === "KomiteKredit") {
                 $Output = $this->PersyaratanModel->Insert($_POST);
                 if ($Output > 0 && !empty($Output)) {
                     $message = [
@@ -61,7 +61,7 @@ class Persyaratan extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Admin") {
+            if ($is_valid_token['data']->Role === "KomiteKredit") {
                 $idpersyaratan = $this->uri->segment(4);
                 $_PUT = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $Output = $this->PersyaratanModel->Update($idpersyaratan, $_PUT);
@@ -111,7 +111,7 @@ class Persyaratan extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "Admin") {
+            if ($is_valid_token['data']->Role === "KomiteKredit") {
                 $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $idpersyaratan = $_POST->idKriteria;
                 $Output = $this->PersyaratanModel->Delete($idpersyaratan);
