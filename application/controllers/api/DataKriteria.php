@@ -37,7 +37,7 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
                         'Data' => null,
                         'message' => "Gagal Menyimpan",
                     ];
-                    $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    $this->response($message, REST_Controller::HTTP_NO_CONTENT);
                 }
 
             } else {
@@ -46,7 +46,7 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
                     'Data' => null,
                     'message' => "Anda Tidak Memiliki Akses",
                 ];
-                $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                $this->response($message, REST_Controller::HTTP_UNAUTHORIZED);
             }
 
         } else {
@@ -55,7 +55,7 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
                 'Data' => null,
                 'message' => "Session Habis",
             ];
-            $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+            $this->response($message, REST_Controller::HTTP_UNAUTHORIZED);
         }
 
     }
@@ -79,7 +79,7 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
                     'data' => null,
                     'message' => "Tidak Ada Data",
                 ];
-                $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                $this->response($message, REST_Controller::HTTP_NO_CONTENT);
             }
 
         }
@@ -105,7 +105,7 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
                         'status' => false,
                         'message' => "Tidak Ada Data",
                     ];
-                    $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    $this->response($message, REST_Controller::HTTP_NO_CONTENT);
                 }
             }
         }
@@ -131,7 +131,7 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
                         'status' => false,
                         'message' => "Tidak Ada Data",
                     ];
-                    $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    $this->response($message, REST_Controller::HTTP_NO_CONTENT);
                 }
             }
         }

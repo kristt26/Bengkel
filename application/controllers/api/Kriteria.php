@@ -43,7 +43,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
                             'Data' => null,
                             'message' => "Gagal Menyimpan",
                         ];
-                        $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                        $this->response($message, REST_Controller::HTTP_NO_CONTENT);
                     }
                 } else {
                     $message = [
@@ -51,7 +51,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
                         'Data' => null,
                         'message' => "Anda tidak memiliki akses",
                     ];
-                    $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    $this->response($message, REST_Controller::HTTP_UNAUTHORIZED);
                 }
             } else {
                 $message = [
@@ -59,7 +59,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
                     'Data' => null,
                     'message' => "Session Habis",
                 ];
-                $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                $this->response($message, REST_Controller::HTTP_UNAUTHORIZED);
             }
         }
         
@@ -85,7 +85,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
                         'status' => false,
                         'message' => "Tidak Ada Data",
                     ];
-                    $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    $this->response($message, REST_Controller::HTTP_NO_CONTENT);
                 }
             }
         }
@@ -111,7 +111,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
                     'data' => null,
                     'message' => "Tidak Ada Data",
                 ];
-                $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                $this->response($message, REST_Controller::HTTP_NO_CONTENT);
             }
 
         }
@@ -137,7 +137,7 @@ class Kriteria extends \Restserver\Libraries\REST_Controller
                         'status' => false,
                         'message' => "Tidak Ada Data",
                     ];
-                    $this->response($message, REST_Controller::HTTP_NOT_FOUND);
+                    $this->response($message, REST_Controller::HTTP_NO_CONTENT);
                 }
             }
         }
