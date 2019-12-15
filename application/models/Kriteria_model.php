@@ -19,6 +19,10 @@ class Kriteria_Model extends CI_Model
             $result = $this->db->query("SELECT * FROM kriteria");
             if($result->num_rows()){
                 $Data = $result->result_object();
+                foreach ($Data as $key => $value) {
+                    $result = $this->db->query("SELECT * FROM subkriteria WHERE idKriteria = $value->idKriteria");
+                    $value->subKriteria = $result->result_object();
+                }
                 return $Data;
             }else{
                 return 0;
