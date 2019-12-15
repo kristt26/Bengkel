@@ -113,3 +113,8 @@ $route['api/DataPersyaratan']['post'] = 'api/DataPersyaratan/insert';
 $route['api/DataPersyaratan']['get'] = 'api/DataPersyaratan/select';
 $route['api/DataPersyaratan/(:num)']['put'] = 'api/DataPersyaratan/update/$1';
 $route['api/DataPersyaratan/(:num)']['delete'] = 'api/DataPersyaratan/hapus/$1';
+// Sub Kriteria
+$route['api/SubKriteria']['post'] = 'api/SubKriteria/insert';
+$route['api/SubKriteria']['get'] = 'api/SubKriteria/select';
+$route['api/SubKriteria/(:num)']['put'] = 'api/SubKriteria/update/$1';
+$route['api/SubKriteria/(:num)']['delete'] = 'api/SubKriteria/hapus/$1';
