@@ -102,7 +102,7 @@ $route['api/Kriteria/(:num)']['delete'] = 'api/Kriteria/hapus/$1';
 $route['api/Persyaratan']['post'] = 'api/Persyaratan/insert';
 $route['api/Persyaratan']['get'] = 'api/Persyaratan/select';
 $route['api/Persyaratan/(:num)']['put'] = 'api/Persyaratan/update/$1';
-$route['api/Persyaratan/(:num)']['delete'] = 'api/Persyaratan/Delete/$1';
+$route['api/Persyaratan/(:num)']['delete'] = 'api/Persyaratan/hapus/$1';
 // Api Data Kriteria
 $route['api/DataKriteria']['post'] = 'api/DataKriteria/insert';
 $route['api/DataKriteria']['get'] = 'api/DataKriteria/select';
@@ -118,3 +118,8 @@ $route['api/SubKriteria']['post'] = 'api/SubKriteria/insert';
 $route['api/SubKriteria']['get'] = 'api/SubKriteria/select';
 $route['api/SubKriteria/(:num)']['put'] = 'api/SubKriteria/update/$1';
 $route['api/SubKriteria/(:num)']['delete'] = 'api/SubKriteria/hapus/$1';
+// Periode
+$route['api/Periode']['post'] = 'api/Periode/insert';
+$route['api/Periode']['get'] = 'api/Periode/select';
+$route['api/Periode/(:num)']['put'] = 'api/Periode/update/$1';
+$route['api/Periode/(:num)']['delete'] = 'api/Periode/hapus/$1';
