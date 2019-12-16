@@ -102,7 +102,7 @@ $route['api/Kriteria/(:num)']['delete'] = 'api/Kriteria/hapus/$1';
 $route['api/Persyaratan']['post'] = 'api/Persyaratan/insert';
 $route['api/Persyaratan']['get'] = 'api/Persyaratan/select';
 $route['api/Persyaratan/(:num)']['put'] = 'api/Persyaratan/update/$1';
-$route['api/Persyaratan/(:num)']['delete'] = 'api/Persyaratan/Delete/$1';
+$route['api/Persyaratan/(:num)']['delete'] = 'api/Persyaratan/hapus/$1';
 // Api Data Kriteria
 $route['api/DataKriteria']['post'] = 'api/DataKriteria/insert';
 $route['api/DataKriteria']['get'] = 'api/DataKriteria/select';
