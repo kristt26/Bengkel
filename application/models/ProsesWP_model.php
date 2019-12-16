@@ -4,7 +4,6 @@ class ProsesWP_Model extends CI_Model
 {
     public function HitungWP()
     {
-        $this->db->where("status", "Lanjut");
         $result = $this->db->get("debitur");
         $debitur = $result->result_object();
         $result - $this->db->get("kriteria");
