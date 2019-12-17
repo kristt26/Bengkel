@@ -113,6 +113,13 @@ class Periode extends \Restserver\Libraries\REST_Controller
                 $this->response($message, REST_Controller::HTTP_NO_CONTENT);
             }
 
+        }else{
+            $message = [
+                'status' => false,
+                'Data' => null,
+                'message' => "Session Habis",
+            ];
+            $this->response($message, REST_Controller::HTTP_UNAUTHORIZED);
         }
     }
     public function hapus_delete()
