@@ -19,23 +19,24 @@ class DataPersyaratan extends \Restserver\Libraries\REST_Controller
 
     public function insert_post()
     {
-        $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
             if ($is_valid_token['data']->Role === "CustomerService") {
-                $Output = $this->DataPersyaratanModel->Insert($_POST);
+                $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+                $iddebitur = $_GET;
+                $Output = $this->DataPersyaratanModel->Insert($_POST, $iddebitur['iddebitur']);
                 if ($Output > 0 && !empty($Output)) {
                     $message = [
                         'status' => true,
                         'data' => $Output,
-                        'message' => "Success!",
+                        'message' => "Berhasil melakukan perubahan!",
                     ];
                     $this->response($message, REST_Controller::HTTP_OK);
                 } else {
                     $message = [
                         'status' => false,
-                        'Data' => null,
+                        'Data' => [],
                         'message' => "Gagal Menyimpan",
                     ];
                     $this->response($message, REST_Controller::HTTP_NO_CONTENT);
