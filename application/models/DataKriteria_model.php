@@ -4,9 +4,6 @@ class DataKriteria_Model extends CI_Model
     protected $DataKriteriaTable = 'datakriteria';
     public function Insert($Datas, $iddebitur, $idperiode)
     {
-        $this->db->where("status", "AKTIF");
-        $result = $this->db->get("periode");
-        $idperiode = $result->result_object();
         $this->db->trans_begin();
         foreach ($Datas as $key => $data) {
             foreach ($data->subKriteria as $key1 => $sub) {
