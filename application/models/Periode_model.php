@@ -28,9 +28,9 @@ class Periode_Model extends CI_Model
             $Kriteria = $result->result_object();
 
             foreach ($debitur as $key => $value) {
-                $value->Kriteria = $Kriteria;
+                $value->kriteria = $Kriteria;
                 $num = 0;
-                foreach ($value->Kriteria as $key1 => $value1) {
+                foreach ($value->kriteria as $key1 => $value1) {
                     $result = $this->db->query("
                         SELECT
                             `subkriteria`.*,
