@@ -18,12 +18,14 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
     }
     public function insert_post()
     {
-        $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+        
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "KomiteKredit") {
-                $Output = $this->DataKriteriaModel->Insert($_POST);
+            if ($is_valid_token['data']->Role === "AnalystOfficer") {
+                $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+                $iddebitur = $_GET['iddebitur'];
+                $Output = $this->DataKriteriaModel->Insert($_POST, $iddebitur);
                 if ($Output > 0 && !empty($Output)) {
                     $message = [
                         'status' => true,

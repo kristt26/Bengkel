@@ -25,6 +25,7 @@ class Debitur_Model extends CI_Model
             ");
             $debitur->persyaratan = $result->result_object();
         }
+        
         return $debiturs;
     }
     public function UpdateDebitur($iddebitur, $data)

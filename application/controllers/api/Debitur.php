@@ -19,12 +19,12 @@ class Debitur extends \Restserver\Libraries\REST_Controller
 
     public function insert_post()
     {
-        $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
             if ($is_valid_token['data']->Role === "CustomerService") {
-                $Output = $this->DebiturModel->InsertDebitur($_POST);
+                $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+                $Output = $this->DebiturModel->InsertDebitur($_POST, $iddebitur);
                 if ($Output > 0 && !empty($Output)) {
                     $message = [
                         'status' => true,
