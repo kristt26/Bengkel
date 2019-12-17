@@ -16,8 +16,6 @@ class DataKriteria_Model extends CI_Model
                     "idSubKriteria" => $sub->idSubKriteria,
                     "idperiode" => $idperiode
                 ];
-                $sub->idperiode = $idperiode;
-                $sub->iddebitur = $iddebitur;
                 $this->db->insert($this->DataKriteriaTable, $DataSimpan);
                 $sub->iddatakriteria = $this->db->insert_id();
             }
