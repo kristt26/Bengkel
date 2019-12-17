@@ -44,7 +44,8 @@ class DataPersyaratan_Model extends CI_Model
             $result = $this->db->query("
                 SELECT
                     `persyaratan`.*,
-                    `datapersyaratan`.`nilai`
+                    `datapersyaratan`.`nilai`,
+                    `datapersyaratan`.`iddatapersyaratan`
                 FROM
                     `persyaratan`
                     LEFT JOIN `datapersyaratan` ON `persyaratan`.`idpersyaratan` =
