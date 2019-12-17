@@ -24,10 +24,11 @@ class Periode_Model extends CI_Model
             $debitur = $result->result_object();
 
             // Get Kriteria
-            $result = $this->db->get("kriteria");
-            $Kriteria = $result->result_object();
+            
 
             foreach ($debitur as $key => $value) {
+                $result = $this->db->get("kriteria");
+                $Kriteria = $result->result_object();
                 $value->kriteria = $Kriteria;
                 $num = 0;
                 foreach ($value->kriteria as $key1 => $value1) {
