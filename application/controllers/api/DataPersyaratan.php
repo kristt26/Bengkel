@@ -22,7 +22,6 @@ class DataPersyaratan extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            if ($is_valid_token['data']->Role === "CustomerService") {
                 $_POST = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $iddebitur = $_GET;
                 $Output = $this->DataPersyaratanModel->Insert($_POST, $iddebitur['iddebitur']);
@@ -41,16 +40,6 @@ class DataPersyaratan extends \Restserver\Libraries\REST_Controller
                     ];
                     $this->response($message, REST_Controller::HTTP_NO_CONTENT);
                 }
-
-            } else {
-                $message = [
-                    'status' => false,
-                    'Data' => null,
-                    'message' => "Anda Tidak Memiliki Akses",
-                ];
-                $this->response($message, REST_Controller::HTTP_UNAUTHORIZED);
-            }
-
         } else {
             $message = [
                 'status' => false,
