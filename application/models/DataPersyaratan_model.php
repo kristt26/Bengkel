@@ -36,22 +36,58 @@ class DataPersyaratan_Model extends CI_Model
     }
     public function Select($iddatapersyaratan)
     {
-        if($iddatapersyaratan==NULL){
-            $result = $this->db->get($this->SubKriteriaModel);
-            if($result->num_rows()){
-                $Data = $result->result_object();
-                return $Data[0];
-            }else{
-                return 0;
-            }
-        }else{
-            $result = $this->db->where("iddatapersyaratan", $iddatapersyaratan);
-            if($result->num_rows()){
-                return $result->result_object();
-            }else{
-                return 0;
+        $result = $this->db->query("SELECT * FROM debitur");
+        $debiturs = $result->result_object();
+        $result = $this->db->get("kriteria");
+        $Kriteria = $result->result_object();
+        foreach ($debiturs as $key => $debitur) {
+            $result = $this->db->query("
+                SELECT
+                    `persyaratan`.*,
+                    `datapersyaratan`.`nilai`
+                FROM
+                    `persyaratan`
+                    LEFT JOIN `datapersyaratan` ON `persyaratan`.`idpersyaratan` =
+                    `datapersyaratan`.`idpersyaratan`
+                WHERE
+                    iddebitur = '$debitur->iddebitur'
+            ");
+            $debitur->persyaratan = $result->result_object();
+            $debitur->Kriteria = $Kriteria;
+            foreach ($debitur->Kriteria as $key1 => $value1) {
+                $result = $this->db->query("
+                        SELECT
+                            `subkriteria`.*,
+                            `datakriteria`.`nilai`
+                        FROM
+                            `subkriteria`
+                            LEFT JOIN `datakriteria` ON `subkriteria`.`idSubKriteria` =
+                            `datakriteria`.`idSubKriteria`
+                            LEFT JOIN `periode` ON `datakriteria`.`idperiode` = `periode`.`idperiode`
+                        WHERE
+                            `subkriteria`.idkriteria = '$value1->idkriteria' AND
+                            datakriteria.iddebitur = '$debitur->iddebitur'
+                ");
+                $value1->subKriteria = $result->result_object();
             }
         }
+        return $debiturs;
+        // if($iddatapersyaratan==NULL){
+        //     $result = $this->db->get($this->SubKriteriaModel);
+        //     if($result->num_rows()){
+        //         $Data = $result->result_object();
+        //         return $Data[0];
+        //     }else{
+        //         return 0;
+        //     }
+        // }else{
+        //     $result = $this->db->where("iddatapersyaratan", $iddatapersyaratan);
+        //     if($result->num_rows()){
+        //         return $result->result_object();
+        //     }else{
+        //         return 0;
+        //     }
+        // }
     }
     public function Delete($iddatapersyaratan)
     {

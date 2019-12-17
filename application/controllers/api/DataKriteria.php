@@ -66,8 +66,8 @@ class DataKriteria extends \Restserver\Libraries\REST_Controller
         $this->load->library('Authorization_Token');
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
-            $IdDataKriteria = $this->get('iddatakriteria');
-            $Output = $this->DataKriteriaModel->Select($IdDataKriteria);
+            $idperiode = $_GET['idperiode'];
+            $Output = $this->DataKriteriaModel->Select($idperiode);
             if (!empty($Output)) {
                 $message = [
                     'status' => true,

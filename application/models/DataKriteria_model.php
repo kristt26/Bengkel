@@ -29,25 +29,26 @@ class DataKriteria_Model extends CI_Model
         $result = $this->db->update($this->DataKriteriaTable, $data);
         return $result;
     }
-    public function Select($idpersyaratan)
+    public function Select($idperiode)
     {
-        if($idpersyaratan==NULL){
-            $result = $this->db->query("SELECT * FROM datakriteria");
-            if($result->num_rows()){
-                $Data = $result->result_object();
-                return $Data;
-            }else{
-                return 0;
-            }
-        }else{
-            $result = $this->db->query("SELECT * FROM datakriteria WHERE iddatakriteria = '$iddatakriteria'");
-            if($result->num_rows()){
-                $Data = $result->result_object();
-                return $Data[0];
-            }else{
-                return 0;
-            }
-        }
+        
+        // if($idpersyaratan==NULL){
+        //     $result = $this->db->query("SELECT * FROM datakriteria");
+        //     if($result->num_rows()){
+        //         $Data = $result->result_object();
+        //         return $Data;
+        //     }else{
+        //         return 0;
+        //     }
+        // }else{
+        //     $result = $this->db->query("SELECT * FROM datakriteria WHERE iddatakriteria = '$iddatakriteria'");
+        //     if($result->num_rows()){
+        //         $Data = $result->result_object();
+        //         return $Data[0];
+        //     }else{
+        //         return 0;
+        //     }
+        // }
     }
     public function Delete($iddatakriteria)
     {
