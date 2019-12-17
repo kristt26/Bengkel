@@ -57,7 +57,7 @@ class Periode_Model extends CI_Model
             }
             $periode->debitur = $debitur;
         }
-        return $periode;
+        return $periodes;
     }
     public function Delete($idKriteria)
     {
