@@ -1,11 +1,27 @@
 <?php
-class Kriteria_Model extends CI_Model
+class DataPersyaratan_Model extends CI_Model
 {
     protected $DataPersyaratan = 'datapersyaratan';
-    public function Insert($Data)
+    public function Insert($Datas, $iddebitur)
     {
-        $this->db->insert($this->DataPersyaratan, $Data);
-        return $this->db->insert_id();
+        $this->db->trans_begin();
+        foreach ($Datas as $key => $data) {
+            if(!isset($data->iddatapersyaratan)){
+                $data->iddebitur = $iddebitur;
+                $this->db->insert($this->DataPersyaratan, $data);
+                $data->iddatapersyaratan = $this->db->insert_id();
+            }else{
+                $this->db->where("iddatapersyaratan", $a);
+                $this->db->update($this->DataPersyaratan, $data);
+            }
+        }
+        if($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            return false ;
+        }else{
+            $this->db->trans_commit();
+            return $Datas;
+        }
     }
     public function Update($iddatapersyaratan, $data)
     {
