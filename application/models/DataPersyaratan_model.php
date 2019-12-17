@@ -6,13 +6,18 @@ class DataPersyaratan_Model extends CI_Model
     {
         $this->db->trans_begin();
         foreach ($Datas as $key => $data) {
+            $a = [
+                "idpersyaratan" => $data->idpersyaratan,
+                "nilai" => $data->nilai,
+                "iddebitur" => $iddebitur
+            ];
             if(!isset($data->iddatapersyaratan)){
                 $data->iddebitur = $iddebitur;
-                $this->db->insert($this->DataPersyaratan, $data);
+                $this->db->insert($this->DataPersyaratan, $a);
                 $data->iddatapersyaratan = $this->db->insert_id();
             }else{
-                $this->db->where("iddatapersyaratan", $a);
-                $this->db->update($this->DataPersyaratan, $data);
+                $this->db->where("iddatapersyaratan", $data->iddatapersyaratan);
+                $this->db->update($this->DataPersyaratan, $a);
             }
         }
         if($this->db->trans_status() === FALSE){
