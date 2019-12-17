@@ -27,7 +27,7 @@ class Debitur_Model extends CI_Model
             ");
             $debitur->persyaratan = $result->result_object();
             $debitur->Kriteria = $Kriteria;
-            foreach ($value->Kriteria as $key1 => $value1) {
+            foreach ($debitur->Kriteria as $key1 => $value1) {
                 $result = $this->db->query("
                         SELECT
                             `subkriteria`.*,
