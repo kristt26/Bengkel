@@ -55,36 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['API'] = 'Rest_server';
-
-// User API Routes
-// $route['api/user/add'] = 'Users/add_user';
-// $route['api/users/all'] = 'Users/fetch_all_users';
-// $route['api/users/register'] = 'api/Users/register';
-// $route['api/users/login'] = 'api/Users/login';
-// $route['api/users/UbahPassword'] = 'api/Users/changepassword';
-// $route['api/users/UbahUsername'] = 'api/Users/changeuser';
-// $route['api/jadwal/jadwalmahasiswa'] = 'api/Jadwal/jadwalMahasiswa';
-// $route['api/jadwal/jadwaldosen'] = 'api/Jadwal/JadwalDosen';
-// $route['api/jadwal/jadwalall'] = 'api/Jadwal/jadwalall';
-// $route['api/jadwal/jadwalKuliah'] = 'api/Jadwal/JadwalKuliah';
-// $route['api/krsm/pengajuanKRS'] = 'api/Krsm/pengajuanKRS';
-// $route['api/krsm/getkrsmtem'] = 'api/Krsm/ambilTemkrsm';
-// $route['api/krsm/putkrsmtem'] = 'api/Krsm/approvedKrsm';
-// $route['api/krsm/deleteitem'] = 'api/Krsm/HapusItem';
-// $route['api/krsm/insertitem'] = 'api/Krsm/InsertItem';
-// $route['api/krhm/GetKemajuanStudi'] = 'api/Khsm/GetKhsm';
-// $route['api/krhm/GetIPK'] = 'api/Khsm/AmbilIPK';
-// $route['api/profile/GetProfile'] = 'api/Profile/GetProfile';
-// $route['api/profile/UpdateProfile'] = 'api/Profile/UpdateProfile';
-// $route['api/home/getHome'] = 'api/Home/ambilinfo';
-// $route['api/tahunakademik/getTaAktif'] = 'api/TahunAkademik/TAAktif';
-// $route['api/approvedkrsm/GetHistori'] = 'api/ApprovedKrsm/ambilHistori';
-// $route['api/sksMahasiswa/AmbilSks'] = 'api/SksMahasiswa/GetSKS';
-// $route['api/Mahasiswa/GetDataMahasiswa'] = 'api/Mahasiswa/GetMahasiswa';
-// $route['api/Perwalian/GetMahasiswa'] = 'api/Perwalian/MahasiswaWali';
-// $route['api/KrsmMahasiswa/GetKrsmMahasiswa'] = 'api/KrsmMahasiswa/GetAll';
-
-
 // Api User
 $route['api/User/Registrasi'] = 'api/Users/register';
 $route['api/User/Login'] = 'api/Users/login';
