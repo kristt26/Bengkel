@@ -93,3 +93,6 @@ $route['api/Periode']['post'] = 'api/Periode/insert';
 $route['api/Periode']['get'] = 'api/Periode/select';
 $route['api/Periode/(:num)']['put'] = 'api/Periode/update/$1';
 $route['api/Periode/(:num)']['delete'] = 'api/Periode/hapus/$1';
+
+// Proses WP
+$route['api/ProsesWP']['get'] = 'api/ProsesWP/proses';
