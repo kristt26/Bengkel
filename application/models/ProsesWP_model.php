@@ -2,13 +2,13 @@
 
 class ProsesWP_Model extends CI_Model
 {
-    public function HitungWP()
+    public function HitungWP($idperiode)
     {
         $result = $this->db->get("debitur");
         $debitur = $result->result_object();
-        $result - $this->db->get("kriteria");
-        $Kriteria = $result->result_object();
         foreach ($debitur as $key => $value) {
+            $result = $this->db->get("kriteria");
+            $Kriteria = $result->result_object();
             $value->Kriteria = $Kriteria;
             $num = 0;
             foreach ($value->Kriteria as $key1 => $value1) {
@@ -19,19 +19,18 @@ class ProsesWP_Model extends CI_Model
                         `subkriteria`
                         LEFT JOIN `datakriteria` ON `subkriteria`.`idSubKriteria` =
                         `datakriteria`.`idSubKriteria`
-                        LEFT JOIN `periode` ON `datakriteria`.`idperiode` = `periode`.`idperiode`
                     WHERE 
-                        periode.status = 'AKTIF' AND
+                        idperiode = '$idperiode' AND
                         `subkriteria`.idkriteria = '$value1->idkriteria' AND
                         datakriteria.iddebitur = '$value->iddebitur'
                 ");
-                if($result->row('nilai')>0){
-                    $value1->nilai = (int) $result->row('nilai');
+                if(doubleval($result->row('nilai'))>0){
+                    $value1->nilai = doubleval($result->row('nilai'));
                 }else{
                     $num += 1;
                 }
             }
-            if($num==0){
+            if($num>0){
                 unset($debitur[$key]);
             }
         }
@@ -41,7 +40,7 @@ class ProsesWP_Model extends CI_Model
             $a = 1;
             $Alternatif = [
                 "Nama" => $value->nama,
-                "Code" => "A".$key+1,
+                "Code" => "A".($key+1),
                 "nilai" => ""
             ];
             foreach ($value->Kriteria as $key1 => $value1) {
@@ -54,12 +53,15 @@ class ProsesWP_Model extends CI_Model
         $NilaiVector['Nilai'] = array();
         foreach ($VectorS as $key => $value) {
             $Alternatif = [
-                "Nama" => $value->nama,
-                "Code" => "V".$key+1,
+                "Nama" => $value['Nama'],
+                "Code" => "V".($key+1),
                 "nilai" => ""
             ];
-            
-            $Alternatif['nilai'] = $value->nilai/array_sum((array)$VectorS);
+            $sum = array_reduce($VectorS, function($carry, $item)
+            {
+                return $carry + $item['nilai'];
+            });
+            $Alternatif['nilai'] = $value['nilai']/$sum;
             array_push($NilaiVector['Nilai'], $Alternatif);
         }
         $NilaiVector = $NilaiVector['Nilai'];
