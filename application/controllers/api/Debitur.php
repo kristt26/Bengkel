@@ -92,7 +92,7 @@ class Debitur extends \Restserver\Libraries\REST_Controller
         $is_valid_token = $this->authorization_token->validateToken();
         if ($is_valid_token['status'] === true) {
             if ($is_valid_token['data']->Role === "CustomerService") {
-                $IdDebitur = $this->uri->segment(4);
+                $IdDebitur = $this->uri->segment(3);
                 $_PUT = json_decode($this->security->xss_clean($this->input->raw_input_stream));
                 $Output = $this->DebiturModel->UpdateDebitur($IdDebitur, $_PUT);
                 if ($Output == true) {
