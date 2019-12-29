@@ -5,7 +5,12 @@ class SubKriteria_Model extends CI_Model
     protected $SubKriteriaTable = 'subkriteria';
     public function Insert($Data)
     {
-        $this->db->insert($this->SubKriteriaTable, $Data);
+        $datasimpan = [
+            "namaSub" => $Data->namaSub,
+            "maxNilai" => $Data->maxNilai,
+            "idkriteria" => $Data->idkriteria
+        ];
+        $this->db->insert($this->SubKriteriaTable, $datasimpan);
         return $this->db->insert_id();
     }
     public function Update($idSubkriteria, $data)
