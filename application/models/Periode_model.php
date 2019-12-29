@@ -31,6 +31,7 @@ class Periode_Model extends CI_Model
                 $Kriteria = $result->result_object();
                 $value->kriteria = $Kriteria;
                 $num = 0;
+                $num1 = 0;
                 foreach ($value->kriteria as $key1 => $value1) {
                     $result = $this->db->query("
                         SELECT
@@ -48,11 +49,18 @@ class Periode_Model extends CI_Model
                 ");
                     if ($result->num_rows() > 0) {
                         $value1->subKriteria = $result->result_object();
+                        $num1 += 1;
                     } else {
+                        // $datasimpan = [
+                        //     "namaSub" => $Data->namaSub,
+                        //     "maxNilai" => $Data->maxNilai,
+                        //     "idkriteria" => $Data->idkriteria,
+                        //     "nilai" => 0
+                        // ];
                         $num += 1;
                     }
                 }
-                if ($num > 0) {
+                if ($num1 <= 0) {
                     unset($debitur[$key]);
                 }
             }
