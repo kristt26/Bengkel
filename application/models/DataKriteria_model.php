@@ -4,6 +4,7 @@ class DataKriteria_Model extends CI_Model
     protected $DataKriteriaTable = 'datakriteria';
     public function Insert($Datas, $iddebitur, $idperiode)
     {
+        
         $this->db->trans_begin();
         foreach ($Datas as $key => $data) {
             foreach ($data->subKriteria as $key1 => $sub) {
@@ -13,8 +14,20 @@ class DataKriteria_Model extends CI_Model
                     "idSubKriteria" => $sub->idSubKriteria,
                     "idperiode" => $idperiode
                 ];
-                $this->db->insert($this->DataKriteriaTable, $DataSimpan);
-                $sub->iddatakriteria = $this->db->insert_id();
+                $this->db->where("iddebitur", $iddebitur);
+                $this->db->where("idperiode", $idperiode);
+                $this->db->where("idSubKriteria", $sub->idSubKriteria);
+                $result = $this->db->get("datakriteria");
+                if($result->num_rows()>0){
+                    $this->db->set("nilai", $sub->nilai);
+                    $this->db->where("iddebitur", $iddebitur);
+                    $this->db->where("idperiode", $idperiode);
+                    $this->db->where("idSubKriteria", $sub->idSubKriteria);
+                    $this->db->update("datakriteria");
+                }else{
+                    $this->db->insert($this->DataKriteriaTable, $DataSimpan);
+                    $sub->iddatakriteria = $this->db->insert_id();
+                }
             }
         }
         if($this->db->trans_status()==FALSE){
