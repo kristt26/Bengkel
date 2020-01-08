@@ -5,7 +5,7 @@ class Periode_Model extends CI_Model
     protected $periodeTable = 'periode';
     public function Insert($Data)
     {
-        $this->db->insert($this->KriteriaTable, $Data);
+        $this->db->insert($this->periodeTable, $Data);
         return $this->db->insert_id();
     }
     public function Update($idperiode, $data)

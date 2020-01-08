@@ -28,7 +28,7 @@ class Periode extends \Restserver\Libraries\REST_Controller
             $this->load->library('Authorization_Token');
             $is_valid_token = $this->authorization_token->validateToken();
             if ($is_valid_token['status'] === true) {
-                if ($is_valid_token['data']->Role === "KomiteKredit") {
+                if ($is_valid_token['data']->Role === "AnalystOfficer") {
                     $Output = $this->PeriodeModel->Insert($_POST);
                     if ($Output > 0 && !empty($Output)) {
                         $message = [
