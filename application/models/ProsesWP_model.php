@@ -44,7 +44,8 @@ class ProsesWP_Model extends CI_Model
                 "nilai" => ""
             ];
             foreach ($value->Kriteria as $key1 => $value1) {
-                $a *= pow($value1->nilai, $Bobot);                
+                $bobot = doubleval($value1->bobot/100);
+                $a *= pow($value1->nilai, $bobot);                
             }
             $Alternatif['nilai'] = $a;
             array_push($VectorS['Nilai'], $Alternatif);
