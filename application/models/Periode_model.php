@@ -32,6 +32,7 @@ class Periode_Model extends CI_Model
                 $value->kriteria = $Kriteria;
                 $num = 0;
                 $num1 = 0;
+                $Iddebitur = $value->iddebitur;
                 foreach ($value->kriteria as $key1 => $value1) {
                     $result = $this->db->query("
                         SELECT
@@ -44,7 +45,7 @@ class Periode_Model extends CI_Model
                             LEFT JOIN `periode` ON `datakriteria`.`idperiode` = `periode`.`idperiode`
                         WHERE 
                             `subkriteria`.idkriteria = '$value1->idkriteria' AND
-                            datakriteria.iddebitur = '$value->iddebitur' AND
+                            datakriteria.iddebitur = '$Iddebitur' AND
                             periode.idperiode = '$periode->idperiode'
                 ");
                     if ($result->num_rows() > 0) {
