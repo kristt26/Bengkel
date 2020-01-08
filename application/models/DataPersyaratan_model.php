@@ -14,7 +14,7 @@ class DataPersyaratan_Model extends CI_Model
             if(!isset($data->iddatapersyaratan)){
                 $data->iddebitur = $iddebitur;
                 $this->db->insert($this->DataPersyaratan, $a);
-                $data->iddatapersyaratan = $this->db->insert_id();
+                $data->iddatapersyaratan =  
             }else{
                 $this->db->where("iddatapersyaratan", $data->iddatapersyaratan);
                 $this->db->update($this->DataPersyaratan, $a);

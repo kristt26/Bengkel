@@ -49,6 +49,9 @@ class Periode_Model extends CI_Model
                 ");
                     if ($result->num_rows() > 0) {
                         $value1->subKriteria = $result->result_object();
+                        foreach ($value1->subKriteria as $key => $value) {
+                            $value->nilai =  doubleval($value->nilai);
+                        }
                         $num1 += 1;
                     } else {
                         // $datasimpan = [
